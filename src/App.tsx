@@ -8,15 +8,22 @@
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
-import Counter from './components/Counter';
+import Counter from './containers/Counter';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import appReducer from './Reducer';
+
+const store = createStore(appReducer);
 
 type Props = {};
 export default class App extends Component<Props> {
   render() {
     return (
-      <View style={styles.container}>
-        <Counter />
-      </View>
+      <Provider store={store}>
+        <View style={styles.container}>
+          <Counter />
+        </View>
+      </Provider>
     );
   }
 }
